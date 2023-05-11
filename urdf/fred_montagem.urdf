@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="fred_montagem">
+  <link  
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00139187402067172 0.0661307684817451 0.00395945551360929"
+        rpy="0 0 0" />
+      <mass
+        value="4.6314332951117" />
+      <inertia
+        ixx="0.0356984612582237"
+        ixy="-3.70847485826341E-06"
+        ixz="-5.00982880054864E-05"
+        iyy="0.0474801044453856"
+        iyz="6.61023819565311E-05"
+        izz="0.0136093829556385" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fred_montagem/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fred_montagem/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="wheel1">
+    <inertial>
+      <origin
+        xyz="0 0 -0.00141323710439917"
+        rpy="0 0 0" />
+      <mass
+        value="0.42999" />
+      <inertia
+        ixx="0.0356984612582237"
+        ixy="-3.70847485826341E-06"
+        ixz="-5.00982880054864E-05"
+        iyy="0.0474801044453856"
+        iyz="6.61023819565311E-05"
+        izz="0.0136093829556385" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fred_montagem/meshes/roda1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fred_montagem/meshes/roda1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint1"
+    type="continuous">
+    <origin
+      xyz="-0.14881 0.113 0.025"
+      rpy="1.5708 1.3493 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="wheel2">
+    <inertial>
+      <origin
+        xyz="0 -1.3878E-17 -0.0014132"
+        rpy="0 0 0" />
+      <mass
+        value="0.42999" />
+      <inertia
+        ixx="0.0356984612582237"
+        ixy="-3.70847485826341E-06"
+        ixz="-5.00982880054864E-05"
+        iyy="0.0474801044453856"
+        iyz="6.61023819565311E-05"
+        izz="0.0136093829556385" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fred_montagem/meshes/roda2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fred_montagem/meshes/roda2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint2"
+    type="continuous">
+    <origin
+      xyz="0.14881 0.113 0.025"
+      rpy="1.5708 -1.3493 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel2" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="wheel3">
+    <inertial>
+      <origin
+        xyz="2.7756E-17 6.9389E-18 -0.0014132"
+        rpy="0 0 0" />
+      <mass
+        value="0.42999" />
+      <inertia
+        ixx="0.0356984612582237"
+        ixy="-3.70847485826341E-06"
+        ixz="-5.00982880054864E-05"
+        iyy="0.0474801044453856"
+        iyz="6.61023819565311E-05"
+        izz="0.0136093829556385" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fred_montagem/meshes/roda3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fred_montagem/meshes/roda3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint3"
+    type="continuous">
+    <origin
+      xyz="0.14881 -0.113 0.025"
+      rpy="1.5708 0.72582 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel3" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="wheel4">
+    <inertial>
+      <origin
+        xyz="2.7756E-17 6.9389E-18 -0.0014132"
+        rpy="0 0 0" />
+      <mass
+        value="0.42999" />
+      <inertia
+        ixx="0.0356984612582237"
+        ixy="-3.70847485826341E-06"
+        ixz="-5.00982880054864E-05"
+        iyy="0.0474801044453856"
+        iyz="6.61023819565311E-05"
+        izz="0.0136093829556385" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fred_montagem/meshes/roda4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fred_montagem/meshes/roda4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint4"
+    type="continuous">
+    <origin
+      xyz="0.14881 -0.113 0.025"
+      rpy="1.5708 0.72582 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel4" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>
