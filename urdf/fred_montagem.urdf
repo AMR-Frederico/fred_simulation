@@ -2,63 +2,164 @@
 <!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
      Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
-<robot
-  name="fred_montagem">
-  <link  
-    name="base_link">
-    <inertial>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="fred_montagem">
+
+  
+<!-- !_____________________ BASE OF THE ROBOT -> LINK _____________________ -->
+  <link name="base_link">
+    
+    <!-- *Define the inertial properties of the link -->
+    <inertial> 
       <origin
-        xyz="0.00139187402067172 0.0661307684817451 0.00395945551360929"
+        xyz="0.00139187403858163 0.0661307685643301 0.00395945537614263"
         rpy="0 0 0" />
       <mass
-        value="4.6314332951117" />
+        value="4.63143329848068" />
       <inertia
-        ixx="0.0356984612582237"
-        ixy="-3.70847485826341E-06"
-        ixz="-5.00982880054864E-05"
-        iyy="0.0474801044453856"
-        iyz="6.61023819565311E-05"
-        izz="0.0136093829556385" />
+        ixx="0.0356984612583256"
+        ixy="-3.70847488075032E-06"
+        ixz="-5.00982880058767E-05"
+        iyy="0.0474801044455017"
+        iyz="6.61023819591993E-05"
+        izz="0.0136093829558188" />
     </inertial>
+   
+    <!-- *Define the visual properties of the link -->
     <visual>
+      
+      <!-- *Define the position in relation of the base_link
       <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+        xyz="0 0 0.08"
+        rpy="0 0 0" /> -->
+
+      <!-- *Define the geometry information --> 
       <geometry>
-        <mesh
-          filename="package://fred_montagem/meshes/base_link.STL" />
+        
+        <!-- *The mesh file used for visualization of the link -->
+        <mesh filename="package://fred_montagem/meshes/base_link.STL" />
+      
       </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      
+      <!-- *Define the material properties of the link -->
+      <material name="">
+        
+        <!-- *The RGBA color values (red, green, blue, alpha) -->
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+     
       </material>
     </visual>
+    
+    <!-- *Define the collision properties of the link -->
     <collision>
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
+        
+        <!-- *The mesh file used for collision detection of the link -->
         <mesh
           filename="package://fred_montagem/meshes/base_link.STL" />
       </geometry>
     </collision>
   </link>
+  
+	<link name="base_footprint">
+		  <visual>
+			  <origin xyz="0 0 0" rpy="0 0 0" />
+			  <geometry>
+				 <box size="0.001 0.001 0.001" />
+			  </geometry>
+		  </visual>
+	</link>
+
+  <joint name="base_link_to_base_footprint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+  </joint>
+
+
+  <!-- !______________________ SENSORS INFORMATION ___________________________-->
+  
+  <!-- ! LIDAR SENSOR ___________________________-->
+  
+  <link name="lidar_link">
+  <!-- *Link description -->
+
+    <!-- *Definition of LIDAR sensor -->
+    <sensor name="lidar_sensor" type="ray">
+      <pose xyz="0.225 0 0.07" rpy="0 0 0" /> <!-- *Sensor position and orientation -->
+      <visualize>true</visualize> <!-- *Sensor visualization -->
+      <update_rate>10</update_rate> <!-- *Sensor update rate (10 Hz) -->
+
+      <!-- *LIDAR scan settings -->
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples> <!-- *Number of scan samples (360) -->
+            <resolution>1</resolution> <!-- *Angular resolution of the scan (1 radian) -->
+            <min_angle>-1.5708</min_angle> <!-- *Minimum scan angle (-90 degrees) -->
+            <max_angle>1.5708</max_angle> <!-- *Maximum scan angle (90 degrees) -->
+          </horizontal>
+        </scan>
+
+        <!-- *LIDAR range settings -->
+        <range>
+          <min>0.01</min> <!-- *Minimum range distance (0.01 meters) -->
+          <max>12.0</max> <!-- *Maximum range distance (12.0 meters) -->
+          <resolution>0.01</resolution> <!-- *Range resolution (0.01 meters) -->
+        </range>
+      </ray>
+    </sensor>
+  </link>
+
+  <joint name="lidar_joint" type="fixed">
+    <origin xyz="0 0.18 0.187" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="lidar_link" />
+
+    <!-- *Definition of LIDAR sensor -->
+    <sensor name="lidar_sensor" type="ray">
+      <pose xyz=" 0 0.225 0.07" rpy="0 0 0" /> <!-- *Sensor position and orientation -->
+      <visualize>true</visualize> <!-- *Sensor visualization -->
+      <update_rate>10</update_rate> <!-- *Sensor update rate (10 Hz) -->
+
+      <!-- *LIDAR scan settings -->
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples> <!-- *Number of scan samples (360) -->
+            <resolution>1</resolution> <!-- *Angular resolution of the scan (1 radian) -->
+            <min_angle>-1.5708</min_angle> <!-- *Minimum scan angle (-90 degrees) -->
+            <max_angle>1.5708</max_angle> <!-- *Maximum scan angle (90 degrees) -->
+          </horizontal>
+        </scan>
+
+        <!-- *LIDAR range settings -->
+        <range>
+          <min>0.01</min> <!-- *Minimum range distance (0.01 meters) -->
+          <max>12.0</max> <!-- *Maximum range distance (12.0 meters) -->
+          <resolution>0.01</resolution> <!-- *Range resolution (0.01 meters) -->
+        </range>
+      </ray>
+    </sensor>
+  </joint>
+
   <link
-    name="wheel1">
+    name="roda1_link">
     <inertial>
       <origin
-        xyz="0 0 -0.00141323710439917"
+        xyz="0 -1.38777878078145E-17 -0.00141323710439914"
         rpy="0 0 0" />
       <mass
-        value="0.42999" />
+        value="0.429989283650456" />
       <inertia
-        ixx="0.0356984612582237"
-        ixy="-3.70847485826341E-06"
-        ixz="-5.00982880054864E-05"
-        iyy="0.0474801044453856"
-        iyz="6.61023819565311E-05"
-        izz="0.0136093829556385" />
+        ixx="0.000697974605354243"
+        ixy="-1.35525271560688E-20"
+        ixz="-4.20771292679119E-20"
+        iyy="0.000697974605354243"
+        iyz="-4.01268310786857E-19"
+        izz="0.00133072022796708" />
     </inertial>
     <visual>
       <origin
@@ -85,60 +186,7 @@
     </collision>
   </link>
   <joint
-    name="joint1"
-    type="continuous">
-    <origin
-      xyz="-0.14881 0.113 0.025"
-      rpy="1.5708 1.3493 -1.5708" />
-    <parent
-      link="base_link" />
-    <child
-      link="wheel1" />
-    <axis
-      xyz="0 0 0" />
-  </joint>
-  <link
-    name="wheel2">
-    <inertial>
-      <origin
-        xyz="0 -1.3878E-17 -0.0014132"
-        rpy="0 0 0" />
-      <mass
-        value="0.42999" />
-      <inertia
-        ixx="0.0356984612582237"
-        ixy="-3.70847485826341E-06"
-        ixz="-5.00982880054864E-05"
-        iyy="0.0474801044453856"
-        iyz="6.61023819565311E-05"
-        izz="0.0136093829556385" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://fred_montagem/meshes/roda2.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.79216 0.81961 0.93333 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://fred_montagem/meshes/roda2.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="joint2"
+    name="roda1"
     type="continuous">
     <origin
       xyz="0.14881 0.113 0.025"
@@ -146,25 +194,87 @@
     <parent
       link="base_link" />
     <child
-      link="wheel2" />
-    <axis
-      xyz="0 0 0" />
+      link="roda1_link" />
+    <axis xyz="0 0 1" rpy="0 0 0" />
+
   </joint>
+  
+  
+  
+  
   <link
-    name="wheel3">
+    name="roda2">
     <inertial>
       <origin
-        xyz="2.7756E-17 6.9389E-18 -0.0014132"
+        xyz="0 0 -0.00141323710439917"
         rpy="0 0 0" />
       <mass
-        value="0.42999" />
+        value="0.429989283650456" />
       <inertia
-        ixx="0.0356984612582237"
-        ixy="-3.70847485826341E-06"
-        ixz="-5.00982880054864E-05"
-        iyy="0.0474801044453856"
-        iyz="6.61023819565311E-05"
-        izz="0.0136093829556385" />
+        ixx="0.000697974605354243"
+        ixy="0"
+        ixz="4.17648288400282E-20"
+        iyy="0.000697974605354243"
+        iyz="-3.97310150637262E-19"
+        izz="0.00133072022796708" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fred_montagem/meshes/roda2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fred_montagem/meshes/roda2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="roda2"
+    type="continuous">
+    <origin
+      xyz="-0.14881 0.113 0.025"
+      rpy="1.5708 1.3493 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="roda2" />
+    <axis xyz="0 0 1" rpy="0 0 0" />
+
+  </joint>
+  
+  
+  
+  
+  
+  <link
+    name="roda3">
+    <inertial>
+      <origin
+        xyz="2.77555756156289E-17 6.93889390390723E-18 -0.0014132371043992"
+        rpy="0 0 0" />
+      <mass
+        value="0.429989283650456" />
+      <inertia
+        ixx="0.000697974605354243"
+        ixy="0"
+        ixz="1.40369272626023E-19"
+        iyy="0.000697974605354243"
+        iyz="2.38922098829457E-20"
+        izz="0.00133072022796708" />
     </inertial>
     <visual>
       <origin
@@ -177,7 +287,7 @@
       <material
         name="">
         <color
-          rgba="0.79216 0.81961 0.93333 1" />
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
     </visual>
     <collision>
@@ -191,7 +301,7 @@
     </collision>
   </link>
   <joint
-    name="joint3"
+    name="roda3"
     type="continuous">
     <origin
       xyz="0.14881 -0.113 0.025"
@@ -199,25 +309,28 @@
     <parent
       link="base_link" />
     <child
-      link="wheel3" />
-    <axis
-      xyz="0 0 0" />
+      link="roda3" />
+    <axis xyz="0 0 1" rpy="0 0 0" />
+
   </joint>
+  
+  
+  
   <link
-    name="wheel4">
+    name="roda4">
     <inertial>
       <origin
-        xyz="2.7756E-17 6.9389E-18 -0.0014132"
+        xyz="-4.16333634234434E-17 6.93889390390723E-18 -0.00141323710439917"
         rpy="0 0 0" />
       <mass
-        value="0.42999" />
+        value="0.429989283650456" />
       <inertia
-        ixx="0.0356984612582237"
-        ixy="-3.70847485826341E-06"
-        ixz="-5.00982880054864E-05"
-        iyy="0.0474801044453856"
-        iyz="6.61023819565311E-05"
-        izz="0.0136093829556385" />
+        ixx="0.000697974605354243"
+        ixy="-2.71050543121376E-20"
+        ixz="-1.37211286325669E-19"
+        iyy="0.000697974605354243"
+        iyz="1.23583139761425E-20"
+        izz="0.00133072022796708" />
     </inertial>
     <visual>
       <origin
@@ -230,7 +343,7 @@
       <material
         name="">
         <color
-          rgba="0.79216 0.81961 0.93333 1" />
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
     </visual>
     <collision>
@@ -244,16 +357,17 @@
     </collision>
   </link>
   <joint
-    name="joint4"
+    name="roda4"
     type="continuous">
     <origin
-      xyz="0.14881 -0.113 0.025"
-      rpy="1.5708 0.72582 1.5708" />
+      xyz="-0.14881 -0.113 0.025"
+      rpy="1.5708 -0.72582 -1.5708" />
     <parent
       link="base_link" />
     <child
-      link="wheel4" />
-    <axis
-      xyz="0 0 0" />
+      link="roda4" />
+    <axis xyz="0 0 1" rpy="0 0 0" />
+
+
   </joint>
 </robot>
