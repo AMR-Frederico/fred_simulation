@@ -11,8 +11,8 @@ end
 
 function sysCall_actuation()
     -- put your actuation code here
-    sim.setJointTargetVelocity(motorHandles[1],0.5)
-    sim.setJointTargetVelocity(motorHandles[2],-0.5)
+    sim.setJointTargetVelocity(motorHandles[1],-0.5)
+    sim.setJointTargetVelocity(motorHandles[2],0.5)
     sim.setJointTargetVelocity(motorHandles[3],-0.5)
     sim.setJointTargetVelocity(motorHandles[4],0.5)
 end
