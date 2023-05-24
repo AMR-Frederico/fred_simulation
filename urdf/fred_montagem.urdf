@@ -4,12 +4,23 @@
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="fred_montagem">
 
+
+    <material name="blue">
+      <color rgba="0 0 0.8 1"/>
+    </material>
+  
+    <material name="black">
+      <color rgba="0.37 0.37 0.37 1"/>
+    </material>
+  
+    <material name="white">
+      <color rgba="0.79 0.90 0.91 1"/>
+    </material>
+ 
   
 <!-- !_____________________ BASE OF THE ROBOT -> LINK _____________________ -->
   <link name="base_link">
-    
-    <!-- *Define the inertial properties of the link -->
-    <inertial> 
+    <inertial>  <!-- *Define the inertial properties of the link -->
       <origin
         xyz="0.00139187403858163 0.0661307685643301 0.00395945537614263"
         rpy="0 0 0" />
@@ -23,60 +34,27 @@
         iyz="6.61023819591993E-05"
         izz="0.0136093829558188" />
     </inertial>
-   
-    <!-- *Define the visual properties of the link -->
-    <visual>
-      
-      <!-- *Define the position in relation of the base_link
+    <visual> <!-- *Define the visual properties of the link -->
       <origin
-        xyz="0 0 0.08"
-        rpy="0 0 0" /> -->
-
-      <!-- *Define the geometry information --> 
-      <geometry>
-        
-        <!-- *The mesh file used for visualization of the link -->
-        <mesh filename="package://fred_montagem/meshes/base_link.STL" />
-      
+        xyz="0 0 0"
+        rpy="0 0 0" /> <!-- *Define the position in relation of the base_link -->
+      <geometry> <!-- *Define the geometry information --> 
+        <mesh filename="package://fred_montagem/meshes/base_link.STL" /> <!-- *The mesh file used for visualization of the link -->
       </geometry>
-      
-      <!-- *Define the material properties of the link -->
-      <material name="">
-        
-        <!-- *The RGBA color values (red, green, blue, alpha) -->
-        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
-     
+      <material name="white"> <!-- *Define the material properties of the link -->
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" /> <!-- *The RGBA color values (red, green, blue, alpha) -->
       </material>
     </visual>
-    
-    <!-- *Define the collision properties of the link -->
-    <collision>
+    <collision> <!-- *Define the collision properties of the link -->
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        
-        <!-- *The mesh file used for collision detection of the link -->
         <mesh
-          filename="package://fred_montagem/meshes/base_link.STL" />
+          filename="package://fred_montagem/meshes/base_link.STL" /> <!-- *The mesh file used for collision detection of the link -->
       </geometry>
     </collision>
   </link>
-  
-	<link name="base_footprint">
-		  <visual>
-			  <origin xyz="0 0 0" rpy="0 0 0" />
-			  <geometry>
-				 <box size="0.001 0.001 0.001" />
-			  </geometry>
-		  </visual>
-	</link>
-
-  <joint name="base_link_to_base_footprint" type="fixed">
-    <parent link="base_footprint"/>
-    <child link="base_link"/>
-    <origin xyz="0 0 0.1" rpy="0 0 0"/>
-  </joint>
 
 
   <!-- !______________________ SENSORS INFORMATION ___________________________-->
@@ -145,6 +123,10 @@
     </sensor>
   </joint>
 
+  <!-- !______________________ WHEELS INFORMATION ___________________________-->
+  
+  <!-- ! WHEEL 1 ___________________________-->
+
   <link
     name="roda1_link">
     <inertial>
@@ -170,7 +152,7 @@
           filename="package://fred_montagem/meshes/roda1.STL" />
       </geometry>
       <material
-        name="">
+        name="black">
         <color
           rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
@@ -201,7 +183,7 @@
   
   
   
-  
+  <!-- ! WHEEL 2 ___________________________--> 
   <link
     name="roda2">
     <inertial>
@@ -227,7 +209,7 @@
           filename="package://fred_montagem/meshes/roda2.STL" />
       </geometry>
       <material
-        name="">
+        name="black">
         <color
           rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
@@ -256,10 +238,8 @@
 
   </joint>
   
-  
-  
-  
-  
+
+  <!-- ! WHEEL 3 ___________________________-->
   <link
     name="roda3">
     <inertial>
@@ -285,7 +265,7 @@
           filename="package://fred_montagem/meshes/roda3.STL" />
       </geometry>
       <material
-        name="">
+        name="black">
         <color
           rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
@@ -315,7 +295,7 @@
   </joint>
   
   
-  
+  <!-- ! WHEEL 4 ___________________________-->
   <link
     name="roda4">
     <inertial>
@@ -341,7 +321,7 @@
           filename="package://fred_montagem/meshes/roda4.STL" />
       </geometry>
       <material
-        name="">
+        name="black">
         <color
           rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
