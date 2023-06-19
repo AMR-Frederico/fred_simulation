@@ -10,8 +10,6 @@ if (sim_call_type==sim.syscb_init) then
     ultrasonicRight_Pub = simROS.advertise('/sensor/range/ultrasonic/right', 'sensor_msgs/Range')
     ultrasonicBack_Pub = simROS.advertise('/sensor/range/ultrasonic/back', 'sensor_msgs/Range')
 
-    SafeDistance_Pub = simROS.advertise('safety/ultrasonic/distance', 'Int32')
-    simROS.publish (SafeDistance_Pub, {data = 2})
 end
 
 
