@@ -72,21 +72,24 @@ function ROScommunication()
 
     odometryTopicName = 'odom'
     velocityTopicName = 'cmd_vel/safe'
+    joyConnection_TopicName = 'joy/controler/connected'
+    breakMode_TopicName = 'joy/controler/ps4/break'
+    modoAuto_TopicName = 'joy/controler/ps4/triangle'
     
-    -- joy connection (for safe_twist)
-    joyConnection_Pub = simROS.advertise('/joy/controler/connected', 'std_msgs/Bool')
-    simROS.publish(joyConnection_Pub, {data = true})
-
-    -- stop break mode
-    breakMode_Pub = simROS.advertise('joy/controler/ps4/break', 'std_msgs/Int16')
-    simROS.publish(breakMode_Pub, {data = 1})
-
-    -- modo auto (for machine states)
-    modoAuto_Pub = simROS.advertise('joy/controler/ps4/triangle', 'std_msgs/Int16')
-    simROS.publish(modoAuto_Pub, {data = 1})
-
     --[[ Prepare publishers: ]]--
     odometryPub=simROS.advertise('/'..odometryTopicName,'nav_msgs/Odometry')
+    
+    -- joy connection (for safe_twist)
+    joyConnection_Pub = simROS.advertise('/'..joyConnection_TopicName, 'std_msgs/Bool')
+    simROS.publish(joyConnection_Pub, {data = true})
+    
+    -- stop break mode
+    breakMode_Pub = simROS.advertise('/'..breakMode_TopicName, 'std_msgs/Int16')
+    simROS.publish(breakMode_Pub, {data = 1})
+    
+    -- modo auto (for machine states)
+    modoAuto_Pub = simROS.advertise('/'..modoAuto_TopicName, 'std_msgs/Int16')
+    simROS.publish(modoAuto_Pub, {data = 1})
 
     --[[ Prepare subscribers: ]]--
     velocitySub = simROS.subscribe('/'..velocityTopicName, 'geometry_msgs/Twist', 'cmd_vel_callback')
@@ -113,7 +116,6 @@ function cmd_vel_callback(msg) -- o robo rotaciona o eixo z, e anda linearmente 
     sim.setJointTargetVelocity(A_RightmotorHandle,Vright)
     sim.setJointTargetVelocity(B_RightmotorHandle,Vright)
     
-
 end 
 
 function getTransformStamped(objHandle,name,relTo,relToName)
