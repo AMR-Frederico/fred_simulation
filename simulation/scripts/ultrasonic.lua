@@ -31,6 +31,8 @@ function getSensorData(sensor_handle, frame_name)
         rangeValue = dist
     end
 
+    rangeValue = rangeValue * 100
+
     local msg={}
 
     t = sim.getSystemTime()
