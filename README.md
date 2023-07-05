@@ -12,7 +12,7 @@ Tutorial de instalação para o CoppeliaSim
 ```shell
 wget -P /tmp https://coppeliarobotics.com/files/CoppeliaSim_Edu_V4_5_1_rev4_Ubuntu20_04.tar.xz
 cd /tmp && tar -xvf CoppeliaSim_Edu_V4_5_1_rev4_Ubuntu20_04.tar.xz
-mv CoppeliaSim_Edu_V4_5_1_Ubuntu20_04 ~/
+mv CoppeliaSim_Edu_V4_5_1_rev4_Ubuntu20_04 ~/
 ```
 
 **2 - Prepare ".bashrc" for CoppeliaSim**
